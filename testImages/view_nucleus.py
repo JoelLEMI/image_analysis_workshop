@@ -1,18 +1,24 @@
 """
-Open testImages/nucleus_cropped_1.tif, print a 10x10 corner of the pixel
-matrix, report its size and number type, then show the image in napari.
+Open an image from testImages/, print a 10x10 corner of the pixel matrix,
+report its size and number type, then show the image in napari.
 
-Requirements:  pip install tifffile numpy "napari[all]"
-Run from anywhere:  python path/to/view_nucleus.py
+Usage (from the image_analysis_workshop folder):
+    uv run python testImages/view_nucleus.py                     # nucleus_cropped_1.tif
+    uv run python testImages/view_nucleus.py nucleus_cropped_2   # any image name
+    uv run python testImages/view_nucleus.py nucleus_cropped_3.tif
 """
 
+import sys
 from pathlib import Path
 
 import numpy as np
 import tifffile
 import napari
 
-IMAGE_NAME = "nucleus_cropped_1.tif"
+# The image name comes from the command line; default to nucleus_cropped_1.
+IMAGE_NAME = sys.argv[1] if len(sys.argv) > 1 else "nucleus_cropped_1.tif"
+if not IMAGE_NAME.lower().endswith((".tif", ".tiff")):
+    IMAGE_NAME += ".tif"   # allow typing the name without ".tif"
 
 # Look for the image relative to where THIS script lives (not where the
 # terminal happens to be), so it works whether the script sits in the

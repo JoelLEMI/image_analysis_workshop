@@ -49,7 +49,14 @@ print(f"Subset shape: {subset.shape}")
 # 3. Number type
 print(f"Number type: {image.dtype}")
 
-# 4. Display in napari
+# 4. Display in napari: the full image AND the image with rows/columns skipped
+#    (every 3rd pixel kept). The subsampled image has 3x fewer pixels per side,
+#    so we scale it by STEP to draw it at the same size -> it looks blockier.
+downsampled = image[::STEP, ::STEP]
+print(f"Full image shape: {image.shape}, downsampled shape: {downsampled.shape}")
+
 viewer = napari.Viewer()
-viewer.add_image(image, name=IMAGE_PATH.stem)
+viewer.add_image(image, name=f"{IMAGE_PATH.stem} (full)")
+viewer.add_image(downsampled, name=f"every {STEP}rd pixel", scale=(STEP, STEP))
+viewer.grid.enabled = True   # show the two layers side by side
 napari.run()
