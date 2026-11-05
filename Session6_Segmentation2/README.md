@@ -22,6 +22,8 @@ When doing this calculation, it is nice to normalize the FI image to 1 (i.e. con
 
 Another approach is to use a "White Top-Hat" filter.  This procedure works by erosion followed by dilation of the original greyscale image to remove objects smaller than the filter size (therefore, you need to carefully consider the needed filter size).  The resulting image represents a good estimate of the background and can be used to subtract from the orginal image. It works best when objects are not that large. 
 
+* Ask your AI assistant to write a Python script that uses a White Top Hat filter to estimate the background in the DAPI channel of testImages/3Channel_FF_Corrected and show the original DAPI image, the background, and the background corrected image in napari. Make sure that the structure size of the top hat is large enough for the nuclei.
+
 
 ## Segmentation using trained networks
 During the previous session you have seen how you can combine convolution filters to create an image that can be easily segmented into the objects that you are ineterested in.  Choosing the correct (sequencee) of filters and selecting a threshold is laborious and often not transferable from one image to the next.  Computer vision scientist have long worked on methods to automate this process so that a single operation can produce the desired segmentation.
