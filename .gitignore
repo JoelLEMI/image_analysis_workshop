@@ -5,3 +5,9 @@ uv.lock
 
 #Editor files
 *.swp
+
+# Mac system files
+.DS_Store
+
+# Raw microscopy data (too large for git)
+image_analysis_workshop_2026/
