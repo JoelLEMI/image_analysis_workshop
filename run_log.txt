@@ -1,0 +1,37 @@
+Image: Nucleus_cropped_noise.tif  shape (284, 288)  type uint16
+
+Linear kernels after normalization (weights sum to 1):
+
+mean3  (sum 1.000)
+[[0.111 0.111 0.111]
+ [0.111 0.111 0.111]
+ [0.111 0.111 0.111]]
+
+center3  (sum 1.000)
+[[0.083 0.083 0.083]
+ [0.083 0.333 0.083]
+ [0.083 0.083 0.083]]
+
+mean7  (sum 1.000): every weight = 0.0204 (= 1/49)
+
+Summary (original vs each filter):
+filter                min      max     mean    noise  gradient  |diff| vs orig
+original              1.0   4164.0    516.4    412.5      97.7             0.0
+mean3               216.6   3967.6    516.4     83.1      49.4            78.8
+center3             173.3   4010.1    516.4    121.7      58.2            59.1
+mean7               243.3   3650.1    516.4     28.9      22.3            81.3
+median_plus3        210.0   4085.0    484.6     38.2      20.7            52.4
+median_square3      226.0   4042.0    484.4     28.8      17.0            55.0
+median_square5      237.0   3857.0    483.9     23.7      12.8            57.7
+
+Mean absolute difference between filtered images (small = the two filters give similar results):
+                         mean3       center3         mean7  median_plus3  median_squar  median_squar
+mean3                      0.0          19.7          54.0          42.4          38.8          41.1
+center3                   19.7           0.0          55.5          42.0          40.1          42.7
+mean7                     54.0          55.5           0.0          43.0          41.1          38.0
+median_plus3              42.4          42.0          43.0           0.0           8.1          12.9
+median_square3            38.8          40.1          41.1           8.1           0.0           8.9
+median_square5            41.1          42.7          38.0          12.9           8.9           0.0
+
+noise = std of neighbor-to-neighbor differences (lower = smoother)
+gradient = mean gradient magnitude: edges PLUS leftover noise (lower = smoother/blurrier)
